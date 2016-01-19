@@ -1,6 +1,7 @@
 package com.softgridtech.fragmentexample;
 
 import android.app.Activity;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -20,16 +21,6 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mBtnOne = (Button) findViewById(R.id.btn1);
-        mBtnOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ShowFragmentOne(null);
-            }
-        });
-
-       /* ShowFragmentOne();*/
-
 
     }
 
@@ -38,12 +29,29 @@ public class MainActivity extends FragmentActivity {
         fragmentManager = (this).getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         FargmentOne fargmentOne = new FargmentOne();
-        fragmentManager.popBackStack();
+        ;
         fragmentTransaction.add(R.id.container, fargmentOne);
 
 
         // it is used to maintain history of the state of the fragments on top of each other.
         fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
+
+    }
+
+    public void ShowFragmentTwo(View view) {
+
+        fragmentManager = (this).getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction1 = fragmentManager.beginTransaction();
+        FragmentTwo fragmentTwo = new FragmentTwo();
+        ;
+        fragmentTransaction1.add(R.id.container, fragmentTwo);
+
+
+        // it is used to maintain history of the state of the fragments on top of each other.
+        fragmentTransaction1.addToBackStack(null);
+        fragmentTransaction1.commit();
 
 
     }
